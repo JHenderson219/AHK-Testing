@@ -154,7 +154,7 @@ Return
     Send {Tab 5}         ; Target PRICING
     Sleep %pauseShort%
     Send {Enter}         ; Select PRICING
-    Sleep %pauseLoad%    ; Wait for Load
+    Sleep %pauseLong%    ; Wait for Load
     Send {Tab 6}         ; Target BASIC PRICING
     Send {Up}            ; Change Radio to NO PRICING
     Sleep %pauseLong%	
@@ -163,7 +163,7 @@ Return
     Sleep %pauseLoad%    ; Wait for Load
     Send +{Tab 14}       ; target QUESTIONS AND ANSWERS
     Send {Enter}         ; select QUESTIONS AND ANSWERS 
-    Sleep %pauseLoad%    ; wait for load
+    Sleep %pauseLong%    ; wait for load
     Send {Tab 9}         ; target ENTERING DESIRED QUALITY radial
     Send {Down}          ; change target to SELECTING A QUANTITY radio
     Sleep %pauseLoad%    ; wait 1s
@@ -181,7 +181,7 @@ Return
 
     Send {Tab 2}        ; Tab to SAVE CHANGES
     Send {Enter}
-    Sleep %pauseLoad%
+    Sleep %pauseLong%
     Send {Tab 4}        ; Tab to SAVE
     Send {Enter}
     Sleep %pauseLoad%
