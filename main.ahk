@@ -89,7 +89,6 @@ Return
 
 
 ^+9::
-	
 	Loop, 3 {
 		pasteFetch()
 		Sleep 25
@@ -147,7 +146,46 @@ Return
 
 Return
 
+^+8::
+    pauseLoad = 1500
+    pauseLong = 250
+    pauseShort = 25
+    Send {Tab 9}         ; Target PRICING
+    Send {Enter}         ; Select PRICING
+    Sleep %pauseLoad%    ; Wait for Load
+    Send {Tab 6}         ; Target BASIC PRICING
+    Send {Up}            ; Change Radio to NO PRICING
+    send {Tab 2}         ; Target SAVE
+    send {Enter}         ; Select SAVE
+    Sleep %pauseLoad%    
+    Send +{Tab 14}       ; target QUESTIONS AND ANSWERS
+    Send {Enter}         ; select QUESTIONS AND ANSWERS 
+    Sleep  %pauseLong%   ; wait .25s
+    Send {Tab 9}         ; target ENTERING DESIRED QUALITY radial
+    Send {Down}          ; change target to SELECTING A QUANTITY radio
+    Sleep %pauseLoad%    ; wait 1s
+    Send +{Tab 4}        ; backtab to EDIT QUANTITY BREAKS
+    Send {Enter}         ; Open EDIT QUANTITY BREAKS
+    Sleep %pauseLong%    ; wait 0.25s
+    Send +{Tab 5}        ; backtab to QUANTITY
+    
+    i = 0
+    while i < 10 {
+        i++
+        Send %i%
+        Send {Tab}
+    }
 
+    Send {Tab 2}        ; Tab to SAVE CHANGES
+    Send {Enter}
+    Sleep %pauseLoad%
+    Send {Tab 4}        ; Tab to SAVE
+    Send {Enter}
+    Sleep %pauseLoad%
+    Send +{Tab}         ; Tab to RETURN TO DOCUMENT LIST
+    Send {Enter}
+Return
+	
 
 
 
