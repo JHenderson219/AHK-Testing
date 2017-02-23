@@ -171,7 +171,7 @@ Return
 
 ^+7::
 	title := "Input script"
-    pauseLoad = 2000
+    pauseLoad = 3000
     pauseLong = 500
     pauseShort = 250  ; prime by copying first column in row
 
@@ -182,6 +182,7 @@ Return
   	InputBox, category, %title%, "Input category name."
   	Send %category%
   	Send {Tab}
+  	Sleep %pauseShort%
   	Send {Enter}
   	Sleep %pauseLoad%
 
@@ -194,7 +195,7 @@ Return
     Send {Enter} ; select SAVE
     Sleep %pauseLoad%
 
-    Send {Tab 19} ; tab to QUESTIONS & ANSWERS
+    Send {Tab 18} ; tab to QUESTIONS & ANSWERS
     Send {Enter}  ;
     Sleep %pauseLong% ;
 
@@ -209,7 +210,7 @@ Return
     Send +{Tab 5} ; Backtab to QTY
     
     i := 0
-    While i < 10 {
+    While i < 100 {
     Sleep %pauseShort%	
     pasteFetchClipboard()
     modResult := Mod(i,2)
@@ -294,7 +295,7 @@ pasteFetch(){
 ^+c::  ; for getting and pasting an individual price and quantity
     pauseLoad = 1000
     pauseLong = 250
-    pauseShort = 10  ; prime by selecting first quantity in TO
+    pauseShort = 100  ; prime by selecting first quantity in TO
 
     Send ^a ; select all
     Sleep %pauseShort%
