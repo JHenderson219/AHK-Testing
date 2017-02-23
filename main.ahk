@@ -1,56 +1,40 @@
-Escape::
-ExitApp
-Return
-
 ^+v::
 	pasteFetch()
 Return
 
-delayedBackTab(){
-	Sleep 5
-	Send +{Tab}
-	Return
-}
+Escape::
+ExitApp
+Return
 
-delayedTab(){
-	Sleep 5
-	Send {Tab}
-	Return
-}
 
 ^+0::
+	
 	Loop, 3 {
 		pasteFetch()
-		Sleep 100
+		Sleep 10
 	}
 	Send {Tab}		;Tab to SAVE AND CONTINUE
 
+	Sleep 10
+
 	Send {Enter}
 
-	Sleep 2500		;Wait for Page Load			
+	Sleep 2000		;Wait for Page Load
 
-	Loop, 5 {
-	delayedBackTab()
-	}	            ;Tab to TITLE BOX
+	Send +{Tab 5}	;Tab to TITLE BOX
 	pasteFetch()
 
-	Loop, 10 {
-	delayedBackTab()
-	}				;Tab to ADDRESS TAB
+	Send +{Tab 10}	;Tab to ADDRESS TAB
 	Send {Enter}
 
-	Sleep 250
+	Sleep 10
 	
-	Loop, 7 {
-	delayedTab()
-	}				;Tab to NEW ADDRESS BUTTON
+	Send {Tab 7}	;Tab to NEW ADDRESS BUTTON
 	Send {Enter}
 
-	Sleep 250
+	Sleep 10
 
-	Loop, 14 {
-	delayedBackTab()
-	}				;Tab to LABEL
+	Send +{Tab 14}	;Tab to LABEL
 	pasteFetch()
 
 	Send {Tab 2}	;Tab to PRIMARY PHONE
@@ -58,7 +42,6 @@ delayedTab(){
 
 	Send {Tab 2}	;Tab to ADDRESS
 	pasteFetch()
-
 
 	Send {Tab}		;Tab to CITY
 	Loop, 4{
@@ -69,29 +52,28 @@ delayedTab(){
 
 	Sleep 2000
 
-	Loop, 8 {
-	delayedBackTab()
-	}               ;Tab to PHONE TAB
+	Send +{Tab 8}	;Tab to PHONE TAB
 	Send {Enter}
-	Sleep 250
+	Sleep 10
 
-	Loop, 6 {
-	delayedTab()
-	}      			;Tab to MOBILE PHONE
+	Send {Tab 6}	;Tab to MOBILE PHONE
 	Loop, 4{
 		pasteFetch()
 	}
 	
 	Send {Enter}
 
-	home()
-Return
+	Sleep 25
 
+	home()
+
+return
 
 ^+9::
+	
 	Loop, 3 {
 		pasteFetch()
-		Sleep 25
+		Sleep 10
 	}
 
 	Send +{Tab}
@@ -101,27 +83,21 @@ Return
 	Send +{Tab 10}	;Tab to ADDRESS TAB
 	Send {Enter}
 
-	Sleep 50
+	Sleep 10
 	
 	Send {Tab 7}	;Tab to EDIT ADDRESS BUTTON
 	Send {Enter}
 
-	Sleep 50
+	Sleep 10
 
 	Send +{Tab 14}	;Tab to LABEL
 	pasteFetch()
 
-	Sleep 50
-
 	Send {Tab 2}	;Tab to PRIMARY PHONE
 	pasteFetch()
 
-	Sleep 50
-
 	Send {Tab 2}	;Tab to ADDRESS
 	pasteFetch()
-
-	Sleep 50
 
 	Send {Tab}		;Tab to CITY
 	Loop, 4{
@@ -130,11 +106,11 @@ Return
 
 	Send {Enter}	;SAVE ADDRESS
 
-	Sleep 2500
+	Sleep 2000
 
 	Send +{Tab 8}	;Tab to PHONE TAB
 	Send {Enter}
-	Sleep 50
+	Sleep 10
 
 	Send {Tab 6}	;Tab to MOBILE PHONE
 	Loop, 4{
@@ -143,79 +119,222 @@ Return
 	
 	Send {Enter}
 
+	Sleep 25
 
-Return
+	home()
+
+return
 
 ^+8::
     pauseLoad = 2000
     pauseLong = 500
     pauseShort = 250
-    ; First, click PRODUCT INFO
-    Send {Tab 5}         ; Target PRICING
+
+    Send {Tab 5}			; Target PRICING
+    Send %pauseShort%
+    Send {Enter}			; Select PRICING
+    Sleep %pauseShort%		; Wait for Load
+    Send {Tab 6}			; Target BASIC PRICING
     Sleep %pauseShort%
-    Send {Enter}         ; Select PRICING
-    Sleep %pauseLong%    ; Wait for Load
-    Send {Tab 6}         ; Target BASIC PRICING
-    Send {Up}            ; Change Radio to NO PRICING
-    Sleep %pauseLong%	
-    Send {Tab 2}         ; Target SAVE
-    Send {Enter}         ; Select SAVE
-    Sleep %pauseLoad%    ; Wait for Load
-    Send +{Tab 14}       ; target QUESTIONS AND ANSWERS
-    Send {Enter}         ; select QUESTIONS AND ANSWERS 
-    Sleep %pauseLong%    ; wait for load
-    Send {Tab 9}         ; target ENTERING DESIRED QUALITY radial
-    Send {Down}          ; change target to SELECTING A QUANTITY radio
-    Sleep %pauseLoad%    ; wait 1s
-    Send +{Tab 4}        ; backtab to EDIT QUANTITY BREAKS
-    Send {Enter}         ; Open EDIT QUANTITY BREAKS
-    Sleep %pauseLong%    ; wait 0.25s
-    Send +{Tab 5}        ; backtab to QUANTITY
+    Send {Up}				; Change Radio to NO PRICING
+    Sleep 750
+    Send {Tab 2}			; Target SAVE
+    Send {Enter}			; Select SAVE
+    Sleep %pauseLoad%    
+    Send +{Tab 14}			; target QUESTIONS AND ANSWERS
+    Send {Enter}			; select QUESTIONS AND ANSWERS 
+    Sleep  %pauseShort%		; Wait for Load
+    Send {Tab 9}			; target ENTERING DESIRED QUALITY radial
+    Send {Down}				; change target to SELECTING A QUANTITY radio
+    Sleep %pauseLoad%		; wait 1s
+    Send +{Tab 4}			; backtab to EDIT QUANTITY BREAKS
+    Send {Enter}			; Open EDIT QUANTITY BREAKS
+    Sleep %pauseLong%		; wait 0.25s
+    Send +{Tab 12}			; backtab to QUANTITY
     
     i = 0
     while i < 10 {
         i++
-        Send %i%
-        Send {Tab}
+        SendInput %i%
+        SendInput {Tab}
     }
 
-    Send {Tab 2}        ; Tab to SAVE CHANGES
-    Send {Enter}
-    Sleep %pauseLong%
-    Send {Tab 4}        ; Tab to SAVE
+    Send {Tab}				; Tab to SAVE CHANGES
     Send {Enter}
     Sleep %pauseLoad%
-    Send +{Tab}         ; Tab to RETURN TO DOCUMENT LIST
+    Send {Tab 4}			; Tab to SAVE
+    Send {Enter}
+    Sleep %pauseLoad%
+    Send +{Tab}				; Tab to RETURN TO DOCUMENT LIST
     Send {Enter}
 Return
-	
 
+^+7::
+	title := "Input script"
+    pauseLoad = 2000
+    pauseLong = 500
+    pauseShort = 250  ; prime by copying first column in row
 
+    Loop, 2 {
+    pasteFetch() ; paste name and description, fetch size
+  	}
+
+  	InputBox, category, %title%, "Input category name."
+  	Send %category%
+  	Send {Tab}
+  	Send {Enter}
+  	Sleep %pauseLoad%
+
+    Send {Tab 4} ; tab to size
+    Loop, 3 {
+    pasteFetch() ; paste size to SIZE, get and paste paper and ink
+    }
+
+    Send {Tab 2} ; tab to SAVE
+    Send {Enter} ; select SAVE
+    Sleep %pauseLoad%
+
+    Send {Tab 19} ; tab to QUESTIONS & ANSWERS
+    Send {Enter}  ;
+    Sleep %pauseLong% ;
+
+    Send {Tab 9} ; tab to ENTERING THE DESIRED QTY
+    Send {Down}  ; select SELECTING A QTY...
+    Sleep %pauseLoad% ;
+
+    Send +{Tab 4} ; backtap to EDIT QTY BREAKS
+    Send {Enter} ; Select EDIT QTY BREAKS
+    Sleep %pauseLong%
+
+    Send +{Tab 5} ; Backtab to QTY
+    
+    i := 0
+    While i < 10 {
+    Sleep %pauseShort%	
+    pasteFetchClipboard()
+    modResult := Mod(i,2)
+    ; MsgBox, i is %i%, mod result is %modResult%
+    if (Mod(i,2) > 0) {
+    
+    	Send +{Tab}
+    	MsgBox, 4,, Would you like to continue? (press Yes or No)
+		IfMsgBox No
+			Break
+    	}
+     i := i+1
+     } 
+
+    Send {Tab 2}
+    Send {Enter 10} ; add QTY
+
+    MsgBox, Please wait to continue.
+
+    Send +{Tab 8} ; Backtab to CUSTOMERS
+    Send {Enter}  ; Select CUSTOMERS
+    Sleep %pauseLong% 
+
+    Send {Tab 8} ; Tab to NOT VIEWABLE
+    Send {Down}	; Down to VIEWABLE
+    Sleep %pauseShort%
+
+    Send {Tab} ; tab to ENTER A COMPANY
+    
+    InputBox, company, %title%, "Input company name."
+  	SendInput %company%
+
+    Send {Tab 2} ; Tab to Company
+    Send {Down 2} ;  Select City of AG
+    Send {Tab} ; Tab to ADD
+
+Return
+
+^+b::
+	pasteFetchClipboard()
+Return
+
+pasteFetchClipboard(){
+	clipboard := RegExReplace(clipboard, "\r\n$","")
+	clipboard = %clipboard%
+	SendInput %clipboard% 	; Paste primed value
+	Sleep 25
+	Send !{Tab} ; Switch windows to Excel
+	Sleep 250
+	Send {Tab}	; Goto next column
+	Sleep 25
+	clipboard =  ; clear clipboard
+	Send ^c 	; Copy value
+	ClipWait
+	Sleep 25
+	Send ^\		; Clear Formatting
+	Sleep 25
+	Send !{Tab}	; Switch to Application
+	Sleep 250
+	Send {Tab}  ; Next field
+	Return
+}
 
 pasteFetch(){
 	Send ^a
-	Send ^v 	;Paste primed value
-	Sleep 50
-	Send !{Tab} ;Switch windows to Excel
-	Sleep 100
-	Send {Tab}	;Goto next column
-	Sleep 50
-	Send ^c 	;Copy value
-	Sleep 50
-	Send ^\		;Clear Formatting
-	Sleep 50
-	Send !{Tab}	;Switch to Application
-	Sleep 100
-	Send {Tab}		
+	Send ^v 	; Paste primed value
+	Sleep 25
+	Send !{Tab} ; Switch windows to Excel
+	Sleep 250
+	Send {Tab}	; Goto next column
+	Sleep 25
+	Send ^c 	; Copy value
+	Sleep 25
+	Send ^\		; Clear Formatting
+	Sleep 25
+	Send !{Tab}	; Switch to Application
+	Sleep 250
+	Send {Tab}
 }
 
+
+^+c::  ; for getting and pasting an individual price and quantity
+    pauseLoad = 1000
+    pauseLong = 250
+    pauseShort = 10  ; prime by selecting first quantity in TO
+
+    Send ^a ; select all
+    Sleep %pauseShort%
+    Send ^c ; copy QUANTITY QTY
+    Sleep %pauseShort%
+    Send {Tab 2} ; tab to PRICE
+    Sleep %pauseShort%
+    Send !{Tab} ; alt tab to excel
+    Sleep %pauseLong%
+    Send ^v ; paste value
+    Sleep %pauseShort%
+    Send {Tab} ; tab to next cell 
+
+    Sleep %pauseShort%
+    Send !{Tab} ; alt tab to application
+    Sleep %pauseLong%
+    Send ^c ; copy price
+    Sleep %pauseShort%
+    Send {Tab 5} ; select next quantity
+
+    Sleep %pauseShort%
+
+    Send !{Tab} ; alt tab to excel
+    Sleep %pauseLong%
+    Send ^v ; paste value
+    Sleep %pauseShort%
+    Send {Tab} ; tab to next cell
+    Sleep %pauseShort%
+    Send !{Tab} ; alt tab to application
+Return
+
+
+
 home(){
-	Sleep 200
 	Send !{Tab}
-	Sleep 200
+	Sleep 40
 	Send {Home}
-	Sleep 50
-	Send {Up}
-	Sleep 50
+	Sleep 25
+	Send {Down}
+	Sleep 25
 	Send ^c
 }
+
