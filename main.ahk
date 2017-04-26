@@ -280,7 +280,7 @@ Return
 
 	Send {Tab} ; tab to "add a question"
 
-	
+	; next, need to add two divider lines
 Return
 
 ^+b::
