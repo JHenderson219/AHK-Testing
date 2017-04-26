@@ -249,9 +249,64 @@ Return
 
 Return
 
+^+6::
+	Title := "Add Proofreading and Approval Questions" ; This script adds proofreading and approval questions to Questions and answers.
+	; To prime, click on "Questions & Answers" after navigating to that tab
+	; IF ANY NEW GLOBAL QUESTIONS ARE ADDED, THIS SCRIPT WILL BREAK!
+
+	Send +{Tab 20} ; 20 backtabs to "Add a Question" 
+
+	selectGlobalQuestions()
+
+	Send {Down 16} ; move to "Preview Note"
+
+	confirmGlobalQuestion()
+
+	Send {Tab} ; Tab to "add a question"
+
+	selectGlobalQuestions()
+
+	Send {Down 17} ; down to "STOP"
+
+	confirmGlobalQuestion()
+
+	Send {Tab} ; Tab to "add a question"
+
+	selectGlobalQuestions()
+
+	Send {Down 14} ; down to "Final Proof Approval"
+
+	confirmGlobalQuestion()
+
+	Send {Tab} ; tab to "add a question"
+
+	
+Return
+
 ^+b::
 	pasteFetchClipboard()
 Return
+
+confirmGlobalQuestion () {
+	Send {Tab 5} ; tab to "Use this global question"
+	Send {Enter} ; select "Use this global question"
+	Sleep %pauseLoad% ;
+	Return	
+}
+
+selectGlobalQuestions () {
+	Send {Enter} ; Select "Add a Question"
+	Sleep %pauseLong%;
+
+	Send +{Tab 2} ; 2 backtabs to "Select a Question Type"
+	Send {Down} ; Move to "Use a global question or Element"
+
+	Sleep %pauseLong% ; wait for youtube embed to load
+
+	Send +{Tab 6} ; 6 backtabs to "Select a Global Question or Element"		
+
+Return
+}
 
 pasteFetchClipboard(){
 	clipboard := RegExReplace(clipboard, "\r\n$","")
