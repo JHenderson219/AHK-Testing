@@ -249,9 +249,148 @@ Return
 
 Return
 
+^+6::
+	Title := "Add approvals script" ; This script adds proofreading and approval questions to Questions and answers.
+	; To prime, click on "Questions & Answers" after navigating to that tab
+	; IF ANY NEW GLOBAL QUESTIONS ARE ADDED, THIS SCRIPT WILL BREAK!
+	; 	pauseLoad = 2000
+    ;	pauseLong = 500
+    ;	pauseSHort = 250
+
+
+	Send +{Tab 20} ; 20 backtabs to "Add a Question" 
+
+	selectGlobalQuestions()
+
+	Send {Down 16} ; move to "Preview Note"
+
+	confirmGlobalQuestion()
+
+	Send {Tab} ; Tab to "add a question"
+
+	selectGlobalQuestions()
+
+	Send {Down 17} ; down to "STOP"
+
+	confirmGlobalQuestion()
+
+	Send {Tab} ; Tab to "add a question"
+
+	selectGlobalQuestions()
+
+	Send {Down 14} ; down to "Final Proof Approval"
+
+	confirmGlobalQuestion()
+
+	Send {Tab} ; tab to "add a question"
+
+	addDividerLine()
+
+	Send {Tab}; tab to "add a question"
+
+	addDividerLine()
+Return
+
+
+^+5::
+	Title := "Final Questions adder"
+	; This script adds udesingit preivew, plus proof and approval questions to Questions and Answers
+
+	Send +{Tab 20} ; 20 backtabs to "Add a Question" 
+	addDividerLine()
+
+	Send {Tab} ; tab to "add a question"
+	selectGlobalQuestions()
+	Send {Down 16} ; move to "Preview Note"
+	confirmGlobalQuestion()
+
+	Send {Tab} ; tab to "add a question"
+	addUDesignItPreview()
+
+	Send {Tab} ; tab to "add a question"
+	addDividerLine()
+
+	Send {Tab} ; Tab to "add a question"
+	selectGlobalQuestions()
+	Send {Down 17} ; down to "STOP"
+	confirmGlobalQuestion()
+	
+	Send {Tab} ; Tab to "add a question"
+	selectGlobalQuestions()
+	Send {Down 14} ; down to "Final Proof Approval"
+	confirmGlobalQuestion()
+
+	Send +{Tab} ; backtab to Final Proof Approval "required" slider
+	Send {Enter} ; set required to true;
+
+	Send {Tab 2} ; tab to "Save"
+	Send {Enter} ; Save item
+
+Return
+
 ^+b::
 	pasteFetchClipboard()
 Return
+
+addUDesignItPreview() {
+	pauseLoad = 2000
+    pauseLong = 500
+
+	Send {Enter} ; select "add a question"
+	Sleep %pauseLong%
+
+	Send +{Tab 2} ; backtab to "Choose a Type"
+	Send {Enter} ; select "Choose a Type"
+	Send {Down 16} ; down to "uDesignIT! preview"
+	Send {Enter} ;
+	Sleep %pauseLong%
+	Send +{Tab} ; backtab to "Create Question"
+	Send {Enter} ; select "Create Question"
+	Sleep %pauseLoad% ; wait for load
+Return
+}
+
+addDividerLine() {
+	pauseLoad = 2000
+    pauseLong = 500
+
+	Send {Enter} ; select "add a question"
+	Sleep %pauseLong%
+	Send +{Tab 2} ; backtab to "select a question type"
+	Send {Enter} ; select "choose a type"
+	Send {Down 12} ; down to Divider Line
+	Send {Enter} ; select Divider Line
+	Sleep %pauseLong%
+	Send +{Tab} ; backtab to "create question"
+	Send {Enter} ; select "create question"
+	Sleep %pauseLoad% ; wait for load
+Return
+}
+
+confirmGlobalQuestion() {
+	pauseLoad = 2000
+	Send {Tab 5} ; tab to "Use this global question"
+	Send {Enter} ; select "Use this global question"
+	Sleep %pauseLoad% 
+Return	
+}
+
+selectGlobalQuestions() {
+	pauseLoad = 2000
+	pauseLong = 500
+
+	Send {Enter} ; Select "Add a Question"
+	Sleep %pauseLong% 
+
+	Send +{Tab 2} ; 2 backtabs to "Select a Question Type"
+	Send {Down} ; Move to "Use a global question or Element"
+
+	Sleep %pauseLoad% ; wait for youtube embed to load
+
+	Send +{Tab 6} ; 6 backtabs to "Select a Global Question or Element"		
+
+Return
+}
 
 pasteFetchClipboard(){
 	clipboard := RegExReplace(clipboard, "\r\n$","")
