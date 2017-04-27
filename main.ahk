@@ -253,10 +253,10 @@ Return
 	Title := "Add approvals script" ; This script adds proofreading and approval questions to Questions and answers.
 	; To prime, click on "Questions & Answers" after navigating to that tab
 	; IF ANY NEW GLOBAL QUESTIONS ARE ADDED, THIS SCRIPT WILL BREAK!
+	; 	pauseLoad = 2000
+    ;	pauseLong = 500
+    ;	pauseSHort = 250
 
-	pauseLoad = 2000
-    pauseLong = 500
-    pauseShort = 250
 
 	Send +{Tab 20} ; 20 backtabs to "Add a Question" 
 
@@ -296,19 +296,23 @@ Return
 Return
 
 addDividerLine() {
+	pauseLoad = 2000
+    pauseLong = 500
+
 	Send {Enter} ; select "add a question"
 	Sleep %pauseLong%
 	Send +{Tab 2} ; backtab to "select a question type"
 	Send {Enter} ; select "choose a type"
 	Send {Down 12} ; select Divider Line
 	Sleep %pauseLong%
-	Send +{Tab} ; backtab to "create question"
+	Send {Tab 2} ; backtab to "create question"
 	Send {Enter} ; select "create question"
 	Sleep %pauseLoad% ; wait for load
 Return
 }
 
 confirmGlobalQuestion() {
+	pauseLoad = 2000
 	Send {Tab 5} ; tab to "Use this global question"
 	Send {Enter} ; select "Use this global question"
 	Sleep %pauseLoad% ;
@@ -316,6 +320,9 @@ Return
 }
 
 selectGlobalQuestions() {
+	pauseLoad = 2000
+	pauseLong = 500
+
 	Sleep %pauseLoad%
 	Send {Enter} ; Select "Add a Question"
 	Sleep %pauseLong% ;
