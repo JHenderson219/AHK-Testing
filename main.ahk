@@ -291,9 +291,58 @@ Return
 	addDividerLine()
 Return
 
+
+^+5::
+	Title := "Final Questions adder"
+	; This script adds udesingit preivew, plus proof and approval questions to Questions and Answers
+
+	Send +{Tab 20} ; 20 backtabs to "Add a Question" 
+	addDividerLine()
+
+	Send {Tab} ; tab to "add a question"
+	selectGlobalQuestions()
+	Send {Down 16} ; move to "Preview Note"
+	confirmGlobalQuestion()
+
+	Send {Tab} ; tab to "add a question"
+	addUDesignItPreview()
+
+	Send {Tab} ; tab to "add a question"
+	addDividerLine()
+
+	Send {Tab} ; Tab to "add a question"
+	selectGlobalQuestions()
+	Send {Down 17} ; down to "STOP"
+	confirmGlobalQuestion()
+	
+	Send {Tab} ; Tab to "add a question"
+	selectGlobalQuestions()
+	Send {Down 14} ; down to "Final Proof Approval"
+	confirmGlobalQuestion()
+
+Return
+
 ^+b::
 	pasteFetchClipboard()
 Return
+
+addUDesignItPreview() {
+	pauseLoad = 2000
+    pauseLong = 500
+
+	Send {Enter} ; select "add a question"
+	Sleep %pauseLong%
+
+	Send +{Tab 2} ; backtab to "Choose a Type"
+	Send {Enter} ; select "Choose a Type"
+	Send {Down 16} ; down to "uDesignIT! preview"
+	Send {Enter} ;
+	Sleep %pauseLong%
+	Send +{Tab} ; backtab to "Create Question"
+	Send {Enter} ; select "Create Question"
+	Sleep %pauseLoad% ; wait for load
+Return
+}
 
 addDividerLine() {
 	pauseLoad = 2000
@@ -305,7 +354,7 @@ addDividerLine() {
 	Send {Enter} ; select "choose a type"
 	Send {Down 12} ; down to Divider Line
 	Send {Enter} ; select Divider Line
-	Sleep %pauseLoad%
+	Sleep %pauseLong%
 	Send +{Tab} ; backtab to "create question"
 	Send {Enter} ; select "create question"
 	Sleep %pauseLoad% ; wait for load
