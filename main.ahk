@@ -305,8 +305,8 @@ addDividerLine() {
 	Send {Enter} ; select "choose a type"
 	Send {Down 12} ; down to Divider Line
 	Send {Enter} ; select Divider Line
-	Sleep %pauseLong%
-	Send {Tab 2} ; tab to "create question"
+	Sleep %pauseLoad%
+	Send +{Tab} ; backtab to "create question"
 	Send {Enter} ; select "create question"
 	Sleep %pauseLoad% ; wait for load
 Return
@@ -316,7 +316,7 @@ confirmGlobalQuestion() {
 	pauseLoad = 2000
 	Send {Tab 5} ; tab to "Use this global question"
 	Send {Enter} ; select "Use this global question"
-	Sleep %pauseLoad% ;
+	Sleep %pauseLoad% 
 Return	
 }
 
@@ -324,9 +324,8 @@ selectGlobalQuestions() {
 	pauseLoad = 2000
 	pauseLong = 500
 
-	Sleep %pauseLoad%
 	Send {Enter} ; Select "Add a Question"
-	Sleep %pauseLong% ;
+	Sleep %pauseLoad% 
 
 	Send +{Tab 2} ; 2 backtabs to "Select a Question Type"
 	Send {Down} ; Move to "Use a global question or Element"
