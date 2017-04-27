@@ -320,6 +320,12 @@ Return
 	Send {Down 14} ; down to "Final Proof Approval"
 	confirmGlobalQuestion()
 
+	Send +{Tab} ; backtab to Final Proof Approval "required" slider
+	Send {Enter} ; set required to true;
+
+	Send {Tab 2} ; tab to "Save"
+	Send {Enter} ; Save item
+
 Return
 
 ^+b::
