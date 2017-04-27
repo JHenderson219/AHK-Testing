@@ -325,7 +325,7 @@ selectGlobalQuestions() {
 	pauseLong = 500
 
 	Send {Enter} ; Select "Add a Question"
-	Sleep %pauseLoad% 
+	Sleep %pauseLong% 
 
 	Send +{Tab 2} ; 2 backtabs to "Select a Question Type"
 	Send {Down} ; Move to "Use a global question or Element"
