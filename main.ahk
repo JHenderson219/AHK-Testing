@@ -303,9 +303,10 @@ addDividerLine() {
 	Sleep %pauseLong%
 	Send +{Tab 2} ; backtab to "select a question type"
 	Send {Enter} ; select "choose a type"
-	Send {Down 12} ; select Divider Line
+	Send {Down 12} ; down to Divider Line
+	Send {Enter} ; select Divider Line
 	Sleep %pauseLong%
-	Send {Tab 2} ; backtab to "create question"
+	Send {Tab 2} ; tab to "create question"
 	Send {Enter} ; select "create question"
 	Sleep %pauseLoad% ; wait for load
 Return
