@@ -254,6 +254,10 @@ Return
 	; To prime, click on "Questions & Answers" after navigating to that tab
 	; IF ANY NEW GLOBAL QUESTIONS ARE ADDED, THIS SCRIPT WILL BREAK!
 
+	pauseLoad = 2000
+    pauseLong = 500
+    pauseShort = 250
+
 	Send +{Tab 20} ; 20 backtabs to "Add a Question" 
 
 	selectGlobalQuestions()
@@ -280,6 +284,11 @@ Return
 
 	Send {Tab} ; tab to "add a question"
 
+	addDividerLine()
+
+	Send {Tab}; tab to "add a question"
+
+	addDividerLine()
 Return
 
 ^+b::
@@ -287,7 +296,7 @@ Return
 Return
 
 addDividerLine() {
-	Send{Enter} ; select "add a question"
+	Send {Enter} ; select "add a question"
 	Sleep %pauseLong%
 	Send +{Tab 2} ; backtab to "select a question type"
 	Send {Enter} ; select "choose a type"
@@ -299,21 +308,22 @@ addDividerLine() {
 Return
 }
 
-confirmGlobalQuestion () {
+confirmGlobalQuestion() {
 	Send {Tab 5} ; tab to "Use this global question"
 	Send {Enter} ; select "Use this global question"
 	Sleep %pauseLoad% ;
 Return	
 }
 
-selectGlobalQuestions () {
+selectGlobalQuestions() {
+	Sleep %pauseLoad%
 	Send {Enter} ; Select "Add a Question"
-	Sleep %pauseLong%;
+	Sleep %pauseLong% ;
 
 	Send +{Tab 2} ; 2 backtabs to "Select a Question Type"
 	Send {Down} ; Move to "Use a global question or Element"
 
-	Sleep %pauseLong% ; wait for youtube embed to load
+	Sleep %pauseLoad% ; wait for youtube embed to load
 
 	Send +{Tab 6} ; 6 backtabs to "Select a Global Question or Element"		
 
