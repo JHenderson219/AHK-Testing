@@ -250,7 +250,7 @@ Return
 Return
 
 ^+6::
-	Title := "Add Proofreading and Approval Questions" ; This script adds proofreading and approval questions to Questions and answers.
+	Title := "Add approvals script" ; This script adds proofreading and approval questions to Questions and answers.
 	; To prime, click on "Questions & Answers" after navigating to that tab
 	; IF ANY NEW GLOBAL QUESTIONS ARE ADDED, THIS SCRIPT WILL BREAK!
 
@@ -280,18 +280,30 @@ Return
 
 	Send {Tab} ; tab to "add a question"
 
-	; next, need to add two divider lines
 Return
 
 ^+b::
 	pasteFetchClipboard()
 Return
 
+addDividerLine() {
+	Send{Enter} ; select "add a question"
+	Sleep %pauseLong%
+	Send +{Tab 2} ; backtab to "select a question type"
+	Send {Enter} ; select "choose a type"
+	Send {Down 12} ; select Divider Line
+	Sleep %pauseLong%
+	Send +{Tab} ; backtab to "create question"
+	Send {Enter} ; select "create question"
+	Sleep %pauseLoad% ; wait for load
+Return
+}
+
 confirmGlobalQuestion () {
 	Send {Tab 5} ; tab to "Use this global question"
 	Send {Enter} ; select "Use this global question"
 	Sleep %pauseLoad% ;
-	Return	
+Return	
 }
 
 selectGlobalQuestions () {
