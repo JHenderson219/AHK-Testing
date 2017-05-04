@@ -328,6 +328,85 @@ Return
 
 Return
 
+^+4::
+	title := "Input script, with Product ID (for Rabobank)"
+    pauseLoad = 3000
+    pauseLong = 500
+    pauseShort = 250  ; prime by copying first column in row
+
+    Loop, 2 {
+    pasteFetch() ; paste name and description, fetch size
+  	}
+
+  	InputBox, category, %title%, "Input category name."
+  	Send %category%
+  	Send {Tab}
+  	Sleep %pauseShort%
+  	Send {Enter}
+  	Sleep %pauseLoad%
+
+    Send {Tab 4} ; tab to size
+    Loop, 3 {
+    pasteFetch() ; paste size to SIZE, get and paste paper and ink
+    }
+
+    Send {Tab 2} ; tab to SAVE
+    Send {Enter} ; select SAVE
+    Sleep %pauseLoad%
+
+    Send {Tab 18} ; tab to QUESTIONS & ANSWERS
+    Send {Enter}  ;
+    Sleep %pauseLong% ;
+
+    Send {Tab 9} ; tab to ENTERING THE DESIRED QTY
+    Send {Down}  ; select SELECTING A QTY...
+    Sleep %pauseLoad% ;
+
+    Send +{Tab 4} ; backtap to EDIT QTY BREAKS
+    Send {Enter} ; Select EDIT QTY BREAKS
+    Sleep %pauseLong%
+
+    Send +{Tab 5} ; Backtab to QTY
+    
+    i := 0
+    While i < 100 {
+    Sleep %pauseShort%	
+    pasteFetchClipboard()
+    modResult := Mod(i,2)
+    ; MsgBox, i is %i%, mod result is %modResult%
+    if (Mod(i,2) > 0) {
+    
+    	Send +{Tab}
+    	MsgBox, 4,, Would you like to continue? (press Yes or No)
+		IfMsgBox No
+			Break
+    	}
+     i := i+1
+     } 
+
+    Send {Tab 2}
+    Send {Enter 10} ; add QTY
+
+    MsgBox, Please wait to continue.
+
+    Send +{Tab 8} ; Backtab to CUSTOMERS
+    Send {Enter}  ; Select CUSTOMERS
+    Sleep %pauseLong% 
+
+    Send {Tab 8} ; Tab to NOT VIEWABLE
+    Send {Down}	; Down to VIEWABLE
+    Sleep %pauseShort%
+
+    Send {Tab} ; tab to ENTER A COMPANY
+    
+    InputBox, company, %title%, "Input company name."
+  	SendInput %company%
+
+    Send {Tab 2} ; Tab to Company
+    Send {Down 2} ;  Select City of AG
+    Send {Tab} ; Tab to ADD
+
+Return
 ^+b::
 	pasteFetchClipboard()
 Return
