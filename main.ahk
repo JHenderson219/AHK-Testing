@@ -328,6 +328,24 @@ Return
 
 Return
 
+pasteFetch(){
+	Send ^a
+	Send ^v 	; Paste primed value
+	Sleep 25
+	Send !{Tab} ; Switch windows to Excel
+	Sleep 250	
+	Send {Tab}	; Goto next column
+	Sleep 25
+	Send ^c 	; Copy value
+	Sleep 25
+	Send ^\     ; Clear Formatting
+	Sleep 25    ;
+	Send !{Tab}	; Switch to Application
+	Sleep 250
+	Send {Tab}
+}
+
+
 ^+4::
 	title := "Input script, with Product ID (for Rabobank)"
     pauseLoad = 3000
@@ -346,11 +364,11 @@ Return
   	Sleep %pauseLoad%
 
     Send {Tab 4} ; tab to size
-    Loop, 3 {
+    Loop, 4 {
     pasteFetch() ; paste size to SIZE, get and paste paper and ink
     }
 
-    Send {Tab 2} ; tab to SAVE
+    Send {Tab 1} ; tab to SAVE
     Send {Enter} ; select SAVE
     Sleep %pauseLoad%
 
@@ -490,23 +508,6 @@ pasteFetchClipboard(){
 	Sleep 250
 	Send {Tab}  ; Next field
 	Return
-}
-
-pasteFetch(){
-	Send ^a
-	Send ^v 	; Paste primed value
-	Sleep 25
-	Send !{Tab} ; Switch windows to Excel
-	Sleep 250
-	Send {Tab}	; Goto next column
-	Sleep 25
-	Send ^c 	; Copy value
-	Sleep 25
-	Send ^\		; Clear Formatting
-	Sleep 25
-	Send !{Tab}	; Switch to Application
-	Sleep 250
-	Send {Tab}
 }
 
 
