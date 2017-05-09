@@ -295,8 +295,8 @@ Return
 ^+5::
 	Title := "Final Questions adder"
 	; This script adds udesingit preivew, plus proof and approval questions to Questions and Answers
-
-	Send +{Tab 20} ; 20 backtabs to "Add a Question" 
+	; Prime by clicking on "Questions & Answers"
+	Send +{Tab 19} ; 19 backtabs to "Add a Question" 
 	addDividerLine()
 
 	Send {Tab} ; tab to "add a question"
